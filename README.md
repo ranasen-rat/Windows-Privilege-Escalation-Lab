@@ -1,6 +1,6 @@
 ---
 <img width="1536" height="1024" alt="Image" src="https://github.com/user-attachments/assets/5a84626b-5072-4309-aa02-2def50049707" />
-# 🛡 Windows Privilege Escalation Lab Setup Script
+🛡 Windows Privilege Escalation Lab Setup Script
 
 A fully automated **Windows 10/11 Privilege Escalation Lab Environment Builder** for red team training, OSCP-style practice, and cybersecurity labs.
 
@@ -8,7 +8,7 @@ This script configures a deliberately vulnerable Windows machine with multiple r
 
 ---
 
-## 🎯 Lab Purpose
+🎯 Lab Purpose
 
 This lab is designed for:
 
@@ -21,9 +21,9 @@ It automatically deploys common misconfigurations used in real-world exploitatio
 
 ---
 
-## ⚙️ What This Script Configures
+⚙️ What This Script Configures
 
-### 👤 Low-Privilege User
+👤 Low-Privilege User
 
 * Creates user: `User`
 * Password: `Password123!`
@@ -31,7 +31,7 @@ It automatically deploys common misconfigurations used in real-world exploitatio
 
 ---
 
-### 🛠 Installed Tools (Auto Download)
+🛠 Installed Tools (Auto Download)
 
 * Microsoft Sysinternals
 
@@ -49,9 +49,9 @@ C:\Users\Public\Desktop\Tools
 
 ---
 
-## 🔥 Vulnerabilities Implemented
+🔥 Vulnerabilities Implemented
 
-### 1️⃣ Weak Service Permissions
+1️⃣ Weak Service Permissions
 
 * SERVICE_CHANGE_CONFIG abuse
 * Writable service binaries
@@ -59,7 +59,7 @@ C:\Users\Public\Desktop\Tools
 * Registry-based service misconfig
 * Unquoted Service Path
 
-### 2️⃣ AlwaysInstallElevated
+2️⃣ AlwaysInstallElevated
 
 Enabled in:
 
@@ -68,19 +68,19 @@ HKLM
 HKCU
 ```
 
-### 3️⃣ Weak File Permissions
+3️⃣ Weak File Permissions
 
 * Writable `Program Files` directories
 * Writable Startup folder
 * Writable Scheduled Task binary location
 
-### 4️⃣ Scheduled Task (Runs as SYSTEM)
+4️⃣ Scheduled Task (Runs as SYSTEM)
 
 ```
 MyTask2
 ```
 
-### 5️⃣ Credential Exposure
+5️⃣ Credential Exposure
 
 * Winlogon stored password
 * PuTTY saved credentials
@@ -89,13 +89,13 @@ MyTask2
 * Web.config plaintext password
 * McAfee SiteList.xml password
 
-### 6️⃣ Registry Autorun Abuse
+6️⃣ Registry Autorun Abuse
 
 HKLM Run key configured
 
 ---
 
-## 🧪 Exploitation Scenarios Included
+🧪 Exploitation Scenarios Included
 
 * DLL Hijacking
 * Service Binary Replacement
@@ -109,9 +109,9 @@ HKLM Run key configured
 
 ---
 
-## 🚀 Usage
+🚀 Usage
 
-### 1️⃣ Requirements
+1️⃣ Requirements
 
 * Windows 10 or 11 VM
 * Run as Administrator
@@ -119,7 +119,7 @@ HKLM Run key configured
 
 ---
 
-### 2️⃣ Run Script
+2️⃣ Run Script
 
 ```powershell
 Set-ExecutionPolicy Bypass -Scope Process -Force
@@ -134,7 +134,7 @@ Optional:
 
 ---
 
-### 3️⃣ After Setup
+3️⃣ After Setup
 
 1. Log off
 2. Login as:
@@ -148,7 +148,7 @@ Password123!
 
 ---
 
-## 🔐 SSL/TLS Download Issues (Lab Still 100% Functional)
+🔐 SSL/TLS Download Issues (Lab Still 100% Functional)
 
 Some Windows lab VMs may experience SSL/TLS download errors when pulling tools directly from the internet.
 
@@ -160,7 +160,7 @@ This is common in:
 
 ---
 
-## ✅ Lab Status: Fully Operational
+✅ Lab Status: Fully Operational
 
 Even if tool downloads fail, the **core lab environment remains completely functional**.
 
@@ -182,7 +182,7 @@ The services, misconfigurations, and credential exposures are the real vulnerabi
 
 ---
 
-## 🛠 Quick TLS Fix (Run as Administrator)
+🛠 Quick TLS Fix (Run as Administrator)
 
 If you want to manually download the tools:
 
@@ -201,7 +201,7 @@ iwr -uri "https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/P
 
 ---
 
-## 🧪 Verify Lab (Login as `User`)
+🧪 Verify Lab (Login as `User`)
 
 After setup:
 
@@ -233,7 +233,7 @@ reg query "HKCU\Software\TightVNC\Server"
 
 ---
 
-## 🚀 Workshop Ready
+🚀 Workshop Ready
 
 ✔ No external tools required
 ✔ All privilege escalation paths active
@@ -244,7 +244,7 @@ The lab is fully operational even without downloads.
 
 ---
 
-## 🧰 Useful Kali Command (For Payload Testing)
+🧰 Useful Kali Command (For Payload Testing)
 
 ```bash
 msfvenom -p windows/exec CMD='net localgroup administrators User /add' -f exe -o shell.exe
@@ -252,7 +252,7 @@ msfvenom -p windows/exec CMD='net localgroup administrators User /add' -f exe -o
 
 ---
 
-## 📂 Directory Structure
+📂 Directory Structure
 
 ```
 C:\Users\Public\Desktop\Tools
@@ -267,7 +267,7 @@ C:\Users\Public\Desktop\Tools
 
 ---
 
-## 🛑 Important Notice
+🛑 Important Notice
 
 ⚠️ This lab intentionally weakens Windows security.
 ⚠️ Use ONLY inside an isolated virtual machine.
@@ -277,7 +277,7 @@ This project is strictly for **educational and ethical security research purpose
 
 ---
 
-## 📌 Recommended Practice Resources
+📌 Recommended Practice Resources
 
 * Offensive Security
 * Hack The Box
@@ -285,14 +285,14 @@ This project is strictly for **educational and ethical security research purpose
 
 ---
 
-## 👨‍💻 Author
+👨‍💻 Author
 
 Rana Sen
 Cyber Security Researcher | Red Team | Windows Exploitation
 
 ---
 
-## ⭐ Contribute
+⭐ Contribute
 
 Pull requests are welcome.
 Suggestions for additional vulnerabilities are appreciated.
