@@ -1,6 +1,6 @@
 ---
 
-# 🛡 Windows Privilege Escalation Lab Setup Script (Final Version)
+# 🛡 Windows Privilege Escalation Lab Setup Script
 
 A fully automated **Windows 10/11 Privilege Escalation Lab Environment Builder** for red team training, OSCP-style practice, and cybersecurity labs.
 
