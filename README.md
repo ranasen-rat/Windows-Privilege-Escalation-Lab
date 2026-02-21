@@ -1,8 +1,6 @@
-# Windows-Privilege-Escalation-Lab
-Windows Privilege Escalation Lab Setup Script
 ---
 
-# 🛡 Windows Privilege Escalation Lab Setup Script
+# 🛡 Windows Privilege Escalation Lab Setup Script (Final Version)
 
 A fully automated **Windows 10/11 Privilege Escalation Lab Environment Builder** for red team training, OSCP-style practice, and cybersecurity labs.
 
@@ -107,7 +105,7 @@ HKLM Run key configured
 * Scheduled Task Abuse
 * Writable Autorun Exploitation
 
-Total: **14 Practical Exercises**
+**Total: 14 Practical Exercises**
 
 ---
 
@@ -150,7 +148,103 @@ Password123!
 
 ---
 
-## 🧰 Useful Kali Commands
+## 🔐 SSL/TLS Download Issues (Lab Still 100% Functional)
+
+Some Windows lab VMs may experience SSL/TLS download errors when pulling tools directly from the internet.
+
+This is common in:
+
+* Older Windows 10 builds
+* Hardened VM templates
+* Environments without updated root certificates
+
+---
+
+## ✅ Lab Status: Fully Operational
+
+Even if tool downloads fail, the **core lab environment remains completely functional**.
+
+```
+✓ User 'User' created
+✓ All 5 vulnerable services configured
+✓ Weak permissions applied
+✓ Registry passwords stored
+✓ Config files deployed
+✓ AlwaysInstallElevated enabled
+✓ Autorun permissions misconfigured
+✓ Scheduled task running as SYSTEM
+✓ VNC password stored
+✓ All 14 exercises ready
+```
+
+⚠️ **Important:**
+The services, misconfigurations, and credential exposures are the real vulnerabilities — tools are optional.
+
+---
+
+## 🛠 Quick TLS Fix (Run as Administrator)
+
+If you want to manually download the tools:
+
+```powershell
+# Force TLS 1.2
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+
+# Sysinternals downloads
+iwr -uri "https://download.sysinternals.com/files/AccessChk.zip" -out "$env:PUBLIC\Desktop\Tools\AccessChk.zip"
+iwr -uri "https://download.sysinternals.com/files/Autoruns.zip" -out "$env:PUBLIC\Desktop\Tools\Autoruns.zip"
+iwr -uri "https://download.sysinternals.com/files/Procmon.zip" -out "$env:PUBLIC\Desktop\Tools\Procmon.zip"
+
+# PowerUp (modern alternative to Sherlock/Tater)
+iwr -uri "https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Privesc/PowerUp.ps1" -out "$env:PUBLIC\Desktop\Tools\PowerUp.ps1"
+```
+
+---
+
+## 🧪 Verify Lab (Login as `User`)
+
+After setup:
+
+1️⃣ Log off
+2️⃣ Login as:
+
+```
+User
+Password123!
+```
+
+Then test the exercises:
+
+```cmd
+REM Verify vulnerable services (Exercise 1–5)
+sc querystate dllsvc
+sc querystate daclsvc
+sc querystate unquotedsvc
+
+REM Check weak file permissions (Exercise 6–8)
+icacls "C:\Program Files\File Permissions Service"
+
+REM Check registry credentials (Exercise 9)
+reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon"
+
+REM Check VNC stored password (Exercise 10)
+reg query "HKCU\Software\TightVNC\Server"
+```
+
+---
+
+## 🚀 Workshop Ready
+
+✔ No external tools required
+✔ All privilege escalation paths active
+✔ Safe for offline environments
+✔ Perfect for live demos and classroom labs
+
+The lab is fully operational even without downloads.
+
+---
+
+## 🧰 Useful Kali Command (For Payload Testing)
 
 ```bash
 msfvenom -p windows/exec CMD='net localgroup administrators User /add' -f exe -o shell.exe
